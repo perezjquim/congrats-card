@@ -22,7 +22,7 @@ $(document).ready(function()
 	//else
 	//{
 		/* Dropdown */
-		$(".container").append('<div class="dropdown">');
+		$(".container").append('<br><div class="dropdown">');
 			$(".dropdown").append('<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> Tipo de postal');
 				$(".dropdown").append('<span class="caret"></span></button>');			
 				$(".dropdown").append('<ul class="dropdown-menu">');
@@ -34,8 +34,8 @@ $(document).ready(function()
 		$(".container").append('</div>');
 
 		/* Background image */
-		$(".container").append('<div class="img-container">');
-			$(".img-container").append('<img src="" id="bg" width="500" height="500">');
+		$(".container").append('<br><div class="img-container" id="canvas" >');
+			$(".img-container").append('<img src="" id="bg" width="500" class="img" height="500">');
 			$(".img-container").append('<div class="img-overlay">');
 				$(".img-overlay").append('<textarea class="form-control" id="msg1">');
 				$(".img-overlay").append('<textarea class="form-control" id="msg2">');				
@@ -53,6 +53,20 @@ $(document).ready(function()
 			$("#bg").attr('src',types[index]["image"]);
 			$("#bg").fadeIn();
 		});
+
+		/* Generate card */
+		$(".container").append("<br><button class='btn btn-default center-block' type='button' id='generate'>Generate card</button><br><br>");
+		$("#generate").click(function(e)
+		{
+		    html2canvas($("#canvas"), 
+		    {
+		        onrendered: function(canvas) 
+		        {
+		            var image = canvas.toDataURL("image/png");
+		            window.open(image);
+		        }
+		    });
+		});		
 	          
 		/*$(".container").append("<input type='radio' value='")
 		$(".container").append("<button class='btn btn-default' type='button' >Ola1</button><br><br>");

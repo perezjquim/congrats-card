@@ -1,7 +1,11 @@
 .img-container{
     position: relative;
-    display: inline;
+    text-align: center;
+    color: white;
 }
 .img-overlay{
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
