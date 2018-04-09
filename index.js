@@ -2,7 +2,7 @@ const types =
 [
 	{
 		label: "Casamento",
-		image: "http://pulpitocristao.com/wp-content/uploads/2017/05/up_cerimonia.jpg"
+		image: "casamento.jpg"
 	},
 	{
 		label: "Aniversário",
@@ -55,22 +55,13 @@ $(document).ready(function()
 		});
 
 		/* Generate card */
-		$(".container").append("<br><button class='btn btn-default center-block' type='button' id='generate'>Generate card</button><br><br>");
+		$(".container").append("<br><button class='btn btn-default center-block' type='button' id='generate'>Generate card</button><br>");
 		$("#generate").click(function(e)
 		{
-		    html2canvas($("#canvas"), 
-		    {
-		        onrendered: function(canvas) 
-		        {
-		            var image = canvas.toDataURL("image/png");
-		            window.open(image);
-		        }
-		    });
-		});		
-	          
-		/*$(".container").append("<input type='radio' value='")
-		$(".container").append("<button class='btn btn-default' type='button' >Ola1</button><br><br>");
-		$(".container").append("<button class='btn btn-default' type='button' value='ola2'>Ola2</button><br><br>");
-		$(".container").append("<button class='btn btn-default' type='button' value='ola3'>Ola3</button><br><br>");		*/
+			html2canvas(document.body).then(function(canvas) 
+			{
+			    document.body.appendChild(canvas);
+			});
+		});
 	//}
 });
