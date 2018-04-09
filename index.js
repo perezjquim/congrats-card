@@ -6,9 +6,11 @@ const types =
 	},
 	{
 		label: "Aniversário",
-		image: "https://www.baixarvideosgratis.com.br/imagens/mensagens/feliz-aniversario/mensagem-de-aniversario-para-amiga-especial-perfeito-para-enviar-pelo-whatsapp-800x400.jpg"
+		image: "aniversario.jpg"
 	}
 ];
+
+const DEFAULT_TYPE = 0;
 
 $(document).ready(function()
 {
@@ -34,34 +36,43 @@ $(document).ready(function()
 		$(".container").append('</div>');
 
 		/* Background image */
-		$(".container").append('<br><div class="img-container" id="canvas" >');
-			$(".img-container").append('<img src="" id="bg" width="500" class="img" height="500">');
+		$(".container").append('<br><div class="img-container">');
+			$(".img-container").append('<img src="" class="img" width="'+params["w"]+'" height="'+params["h"]+'">');
 			$(".img-container").append('<div class="img-overlay">');
 				$(".img-overlay").append('<textarea class="form-control" id="msg1">');
 				$(".img-overlay").append('<textarea class="form-control" id="msg2">');				
 			$(".img-container").append('</div>');
 		$(".container").append('</div>');
-		$("#bg").hide();		
-		$("#bg").attr('src',types[0]["image"]);
-		$("#bg").fadeIn();
+		setImage(DEFAULT_TYPE);
 
 		/* Dropdown action */
 		$(".dropdown-menu > li > a").click(function(e)
 		{
 			var index = $(this).parent().index();
-			$("#bg").hide();						
-			$("#bg").attr('src',types[index]["image"]);
-			$("#bg").fadeIn();
+			setImage(index);
 		});
 
 		/* Generate card */
 		$(".container").append("<br><button class='btn btn-default center-block' type='button' id='generate'>Generate card</button><br>");
 		$("#generate").click(function(e)
 		{
-			html2canvas(document.body).then(function(canvas) 
-			{
-			    document.body.appendChild(canvas);
-			});
+		    html2canvas($(".img-container"), 
+		    {
+		    	  width: params["w"],
+		    	  height: params["h"],
+		        onrendered: function(canvas) 
+		        {
+		            var image = canvas.toDataURL("image/png");
+		            window.open(image);
+		        }
+		    });
 		});
 	//}
 });
+
+function setImage(index)
+{
+	$(".img").hide();						
+	$(".img").attr('src',types[index]["image"]);
+	$(".img").fadeIn();
+}

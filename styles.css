@@ -1,10 +1,9 @@
 .img-container{
     position: relative;
-    text-align: center;
     color: white;
 }
 .img-overlay{
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 25%;
 }
