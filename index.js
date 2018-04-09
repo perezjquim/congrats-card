@@ -21,6 +21,7 @@ $(document).ready(function()
 	//}
 	//else
 	//{
+		/* Dropdown */
 		$(".container").append('<div class="dropdown">');
 			$(".dropdown").append('<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> Tipo de postal');
 				$(".dropdown").append('<span class="caret"></span></button>');			
@@ -30,7 +31,28 @@ $(document).ready(function()
 						$(".dropdown-menu").append("<li><a href='#'>"+type["label"]+"</a></li>");
 					});				
 			          	$(".dropdown-menu").append('</ul>');
-		$(".container").append('</div');
+		$(".container").append('</div>');
+
+		/* Background image */
+		$(".container").append('<div class="thumbnail">');
+			$(".thumbnail").append('<img src="" id="bg" width="1000" height="1000">');
+			$(".thumbnail").append('<div class="caption">');
+				$(".caption").append('<h3>XXX</h3>');
+				$(".caption").append('<p>Ola</p>');
+			$(".thumbnail").append('</div>');
+		$(".container").append('</div>');
+		$("#bg").hide();		
+		$("#bg").attr('src',types[0]["image"]);
+		$("#bg").fadeIn();
+
+		/* Dropdown action */
+		$(".dropdown-menu > li > a").click(function(e)
+		{
+			var index = $(this).parent().index();
+			$("#bg").hide();						
+			$("#bg").attr('src',types[index]["image"]);
+			$("#bg").fadeIn();
+		});
 	          
 		/*$(".container").append("<input type='radio' value='")
 		$(".container").append("<button class='btn btn-default' type='button' >Ola1</button><br><br>");
