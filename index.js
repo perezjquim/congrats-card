@@ -1,7 +1,13 @@
 const types =
 [
-	"Casamento",
-	"Aniversário"
+	{
+		label: "Casamento",
+		image: "http://pulpitocristao.com/wp-content/uploads/2017/05/up_cerimonia.jpg"
+	},
+	{
+		label: "Aniversário",
+		image: "https://www.baixarvideosgratis.com.br/imagens/mensagens/feliz-aniversario/mensagem-de-aniversario-para-amiga-especial-perfeito-para-enviar-pelo-whatsapp-800x400.jpg"
+	}
 ];
 
 $(document).ready(function()
@@ -19,9 +25,9 @@ $(document).ready(function()
 			$(".dropdown").append('<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> Tipo de postal');
 				$(".dropdown").append('<span class="caret"></span></button>');			
 				$(".dropdown").append('<ul class="dropdown-menu">');
-					types.forEach(function(t)
+					types.forEach(function(type)
 					{
-						$(".dropdown-menu").append("<li><a href='#'>"+t+"</a></li>");
+						$(".dropdown-menu").append("<li><a href='#'>"+type["label"]+"</a></li>");
 					});				
 			          	$(".dropdown-menu").append('</ul>');
 		$(".container").append('</div');
