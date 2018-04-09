@@ -1,0 +1,7 @@
+.img-container{
+    position: relative;
+    display: inline;
+}
+.img-overlay{
+    position: absolute;
+}

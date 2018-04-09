@@ -34,12 +34,12 @@ $(document).ready(function()
 		$(".container").append('</div>');
 
 		/* Background image */
-		$(".container").append('<div class="thumbnail">');
-			$(".thumbnail").append('<img src="" id="bg" width="1000" height="1000">');
-			$(".thumbnail").append('<div class="caption">');
-				$(".caption").append('<h3>XXX</h3>');
-				$(".caption").append('<p>Ola</p>');
-			$(".thumbnail").append('</div>');
+		$(".container").append('<div class="img-container">');
+			$(".img-container").append('<img src="" id="bg" width="500" height="500">');
+			$(".img-container").append('<div class="img-overlay">');
+				$(".img-overlay").append('<textarea class="form-control" id="msg1">');
+				$(".img-overlay").append('<textarea class="form-control" id="msg2">');				
+			$(".img-container").append('</div>');
 		$(".container").append('</div>');
 		$("#bg").hide();		
 		$("#bg").attr('src',types[0]["image"]);
