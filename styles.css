@@ -6,4 +6,5 @@
 {
     position: absolute;
     width: 20%;
+    resize: none;
 }
