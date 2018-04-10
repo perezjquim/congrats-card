@@ -15,6 +15,10 @@ const types =
 	}
 ];
 
+// Borders
+const BORDER_X = 125;
+const BORDER_Y = 90;
+
 // Mouse fix
 const MOUSE_FIX_X = 150;
 const MOUSE_FIX_Y = 25;
@@ -104,8 +108,40 @@ $(document).ready(function()
 	{
 		if(canMove[e.target.id])
 		{
-			$("#"+e.target.id).css('left',e.pageX-MOUSE_FIX_X+'px');				
-			$("#"+e.target.id).css('top',e.pageY-MOUSE_FIX_Y+'px');
+			var newpos_x = e.pageX-MOUSE_FIX_X;
+			var newpos_y = e.pageY-MOUSE_FIX_Y;
+
+			if(newpos_x < BORDER_X)
+			{
+				$("#"+e.target.id).css('left',BORDER_X+'px');
+			}
+			else
+			{
+				if(newpos_x > params[IMAGE_WIDTH] - BORDER_X - 45)
+				{
+					$("#"+e.target.id).css('left',params[IMAGE_WIDTH] - BORDER_X - 45 + 'px');		
+				}
+				else
+				{
+					$("#"+e.target.id).css('left',newpos_x + 'px');	
+				}
+			}
+
+			if(newpos_y < BORDER_Y)
+			{
+				$("#"+e.target.id).css('top',BORDER_Y+'px');
+			}
+			else
+			{
+				if(newpos_y > params[IMAGE_HEIGHT])
+				{
+					$("#"+e.target.id).css('top',params[IMAGE_HEIGHT] - 10 + 'px');						
+				}
+				else
+				{
+					$("#"+e.target.id).css('top',newpos_y + 'px');
+				}
+			}	
 		}
 	});
 });
