@@ -16,17 +16,17 @@ const types =
 ];
 
 // Mouse fix
-const MOUSE_FIX_X = 200;
-const MOUSE_FIX_Y = 100;
+const MOUSE_FIX_X = 150;
+const MOUSE_FIX_Y = 25;
 
 // Default values
 const DEFAULT_TYPE = 0;
 const DEFAULT_IMAGE_WIDTH = 500;
 const DEFAULT_IMAGE_HEIGHT = 250;
-const DEFAULT_TXT1_X = 250;
-const DEFAULT_TXT1_Y = 50;
-const DEFAULT_TXT2_X = 250;
-const DEFAULT_TXT2_Y = 150;
+const DEFAULT_TXT1_X = 325;
+const DEFAULT_TXT1_Y = 120;
+const DEFAULT_TXT2_X = 325;
+const DEFAULT_TXT2_Y = 220;
 
 // Parameters
 const IMAGE_WIDTH = "image_width";
