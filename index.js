@@ -60,6 +60,7 @@ $(document).ready(function()
 	$("#txt2").css('left',params[TXT2_X]+'px');
 	$("#txt2").css('top',params[TXT2_Y]+'px');	
 
+	// Draws the default image
 	setImage(DEFAULT_TYPE);
 
 	/* Dropdown action */
@@ -84,20 +85,19 @@ $(document).ready(function()
 	    });
 	});
 
-	var move = [];
-
+	/* Textboxes' events (move events) */
+	var canMove = [];
 	$(".img-overlay").on('mousedown',function(e)
 	{
-		move[e.target.id] = true;
+		canMove[e.target.id] = true;
 	});
 	$(".img-overlay").on('mouseup',function(e)
 	{
-		move[e.target.id] = false;
-	});	
-
+		canMove[e.target.id] = false;
+	});
 	$(".img-overlay").on('mousemove',function(e)
 	{
-		if(move[e.target.id])
+		if(canMove[e.target.id])
 		{
 			$("#"+e.target.id).css('left',e.pageX-MOUSE_FIX_X+'px');				
 			$("#"+e.target.id).css('top',e.pageY-MOUSE_FIX_Y+'px');
@@ -110,4 +110,9 @@ function setImage(index)
 	$(".img").hide();						
 	$(".img").attr('src',types[index]["image"]);
 	$(".img").fadeIn();
+}
+
+function prepare()
+{
+	
 }
