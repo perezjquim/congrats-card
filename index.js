@@ -75,18 +75,11 @@ window.onload = function(e)
 	    {
 	    	  width: params[IMAGE_WIDTH],
 	    	  height: params[IMAGE_HEIGHT],
-	    	  logging: true,
 	        onrendered: function(canvas) 
 	        {
-	            var image = canvas.toDataURL("image/png");
-	            /*//$("body").append("<a href='#' download='"+image+"'>Ola</a>");
-	            console.log(image);
-	            console.log(canvas);
-			//var newTab = window.open();
-			//newTab.document.body.innerHTML = '<img src="'+image+'" width="'+params[IMAGE_WIDTH]+'" height="'+params[IMAGE_HEIGHT]+'">';
-	            window.open(image);*/
-			var newTab = window.open();
-			newTab.document.body.innerHTML = '<img src="'+image+'" width="'+params[IMAGE_WIDTH]+'" height="'+params[IMAGE_HEIGHT]+'">';
+			var image  = canvas.toDataURL();
+			$("#dlcard").attr('href',image);
+			$("#dlcard")[0].click();
 	        }
 	    });
 	});
