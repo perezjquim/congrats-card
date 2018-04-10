@@ -54,6 +54,9 @@ $(document).ready(function()
 	// Draws the default image
 	setImage(DEFAULT_TYPE);
 
+	// Clears the image uploader
+	$("#upload").val('');
+
 	// Dropdown action
 	$(".dropdown-menu > li > a").click(function(e)
 	{
@@ -64,7 +67,7 @@ $(document).ready(function()
 	// Generate card
 	$("#generate").click(function(e)
 	{
-	    html2canvas($(".img-container"), 
+	    html2canvas($("#img-container"), 
 	    {
 	    	  width: params[IMAGE_WIDTH],
 	    	  height: params[IMAGE_HEIGHT],
@@ -82,8 +85,7 @@ $(document).ready(function()
 		console.log($("#upload")[0].files);
             reader.onload = function (e) 
             {
-                $('.img')
-                    .attr('src', e.target.result);
+                $('.img').attr('src', e.target.result);
             };
             reader.readAsDataURL($("#upload")[0].files[0]);
 	});
