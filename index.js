@@ -27,27 +27,20 @@ $(document).ready(function()
 	if(isNaN(params["h"]))  params["h"] = String(DEFAULT_HEIGHT);
 
 	/* Dropdown */
-	$(".container").append('<br><div class="dropdown">');
-		$(".dropdown").append('<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> Tipo de postal');
-			$(".dropdown").append('<span class="caret"></span></button>');			
-			$(".dropdown").append('<ul class="dropdown-menu">');
-				types.forEach(function(type)
-				{
-					$(".dropdown-menu").append("<li><a href='#'>"+type["label"]+"</a></li>");
-				});				
-		          	$(".dropdown-menu").append('</ul>');
-	$(".container").append('</div>');
+	types.forEach(function(type)
+	{
+		$(".dropdown-menu").append("<li><a href='#'>"+type["label"]+"</a></li>");
+	});				
+      $(".dropdown-menu").append('</ul>');
 
 	/* Background image */
-	$(".container").append('<br><div class="img-container">');
-		$(".img-container").append('<img src="" class="img" width="'+params["w"]+'" height="'+params["h"]+'">');
-		$(".img-container").append('<div class="img-overlay" id="overlay">');
-			$(".img-overlay").css('top',params["h"]*0.09+"%");
-			$(".img-overlay").css('left',params["w"]*0.05+"%");
-			$(".img-overlay").append('<textarea class="form-control" id="msg1">');
-			$(".img-overlay").append('<textarea class="form-control" id="msg2">');				
-		$(".img-container").append('</div>');
-	$(".container").append('</div>');
+	$(".img-container").append('<img src="" class="img" width="'+params["w"]+'" height="'+params["h"]+'">');
+	$(".img-container").append('<div class="img-overlay" id="overlay">');
+		$(".img-overlay").css('top',params["h"]*0.09+"%");
+		$(".img-overlay").css('left',params["w"]*0.05+"%");
+		$(".img-overlay").append('<textarea class="form-control" id="msg1">');
+		$(".img-overlay").append('<textarea class="form-control" id="msg2">');		
+				
 	setImage(DEFAULT_TYPE);
 
 	/* Dropdown action */
@@ -58,7 +51,6 @@ $(document).ready(function()
 	});
 
 	/* Generate card */
-	$(".container").append("<br><button class='btn btn-default center-block' type='button' id='generate'>Generate card</button><br>");
 	$("#generate").click(function(e)
 	{
 	    html2canvas($(".img-container"), 
