@@ -7,6 +7,10 @@ const types =
 	{
 		label: "Aniversário",
 		image: "aniversario.jpg"
+	},
+	{
+		label: "Dia de São Valentim",
+		image: "valentim.jpg"
 	}
 ];
 
@@ -37,7 +41,9 @@ $(document).ready(function()
 	/* Background image */
 	$(".container").append('<br><div class="img-container">');
 		$(".img-container").append('<img src="" class="img" width="'+params["w"]+'" height="'+params["h"]+'">');
-		$(".img-container").append('<div class="img-overlay">');
+		$(".img-container").append('<div class="img-overlay" id="overlay">');
+			$(".img-overlay").css('top',params["h"]*0.09+"%");
+			$(".img-overlay").css('left',params["w"]*0.05+"%");
 			$(".img-overlay").append('<textarea class="form-control" id="msg1">');
 			$(".img-overlay").append('<textarea class="form-control" id="msg2">');				
 		$(".img-container").append('</div>');
