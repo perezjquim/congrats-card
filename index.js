@@ -16,7 +16,7 @@ const types =
 ];
 
 // Borders
-const BORDER_X = 125;
+const BORDER_X = 30;
 const BORDER_Y = 90;
 
 // Mouse fix
@@ -44,7 +44,7 @@ const TXT2_Y = "txt2_y";
 var currentURL = purl(window.location.href);
 var params = currentURL.param();
 
-window.onload = function(e)
+$("document").ready(function(e)
 {
 	// Checks the URL parameters
 	checkParameters();
@@ -145,7 +145,7 @@ window.onload = function(e)
 			}	
 		}
 	});
-};
+});
 
 /* Checks the URL parameters (or lack of) */
 function checkParameters()
