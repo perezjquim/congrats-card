@@ -44,7 +44,7 @@ const TXT2_Y = "txt2_y";
 var currentURL = purl(window.location.href);
 var params = currentURL.param();
 
-$(document).ready(function()
+window.onload = function(e)
 {
 	// Checks the URL parameters
 	checkParameters();
@@ -75,10 +75,18 @@ $(document).ready(function()
 	    {
 	    	  width: params[IMAGE_WIDTH],
 	    	  height: params[IMAGE_HEIGHT],
+	    	  logging: true,
 	        onrendered: function(canvas) 
 	        {
 	            var image = canvas.toDataURL("image/png");
-	            window.open(image);
+	            /*//$("body").append("<a href='#' download='"+image+"'>Ola</a>");
+	            console.log(image);
+	            console.log(canvas);
+			//var newTab = window.open();
+			//newTab.document.body.innerHTML = '<img src="'+image+'" width="'+params[IMAGE_WIDTH]+'" height="'+params[IMAGE_HEIGHT]+'">';
+	            window.open(image);*/
+			var newTab = window.open();
+			newTab.document.body.innerHTML = '<img src="'+image+'" width="'+params[IMAGE_WIDTH]+'" height="'+params[IMAGE_HEIGHT]+'">';
 	        }
 	    });
 	});
@@ -144,7 +152,7 @@ $(document).ready(function()
 			}	
 		}
 	});
-});
+};
 
 /* Checks the URL parameters (or lack of) */
 function checkParameters()
