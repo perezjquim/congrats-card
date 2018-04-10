@@ -1,3 +1,4 @@
+// Card types
 const types =
 [
 	{
@@ -14,6 +15,7 @@ const types =
 	}
 ];
 
+// Mouse fix
 const MOUSE_FIX_X = 200;
 const MOUSE_FIX_Y = 100;
 
@@ -34,6 +36,7 @@ const TXT1_Y = "txt1_y";
 const TXT2_X = "txt2_x";
 const TXT2_Y = "txt2_y";
 
+// URL
 var currentURL = purl(window.location.href);
 var params = currentURL.param();
 
@@ -51,14 +54,14 @@ $(document).ready(function()
 	// Draws the default image
 	setImage(DEFAULT_TYPE);
 
-	/* Dropdown action */
+	// Dropdown action
 	$(".dropdown-menu > li > a").click(function(e)
 	{
 		var index = $(this).parent().index();
 		setImage(index);
 	});
 
-	/* Generate card */
+	// Generate card
 	$("#generate").click(function(e)
 	{
 	    html2canvas($(".img-container"), 
@@ -73,7 +76,7 @@ $(document).ready(function()
 	    });
 	});
 
-	/* Textboxes' events (move events) */
+	// Textboxes' events (move events)
 	var canMove = [];
 	$(".img-overlay").on('mousedown',function(e)
 	{
