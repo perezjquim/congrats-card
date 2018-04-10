@@ -76,6 +76,18 @@ $(document).ready(function()
 	    });
 	});
 
+	$("#upload").change(function()
+	{
+		var reader = new FileReader();
+		console.log($("#upload")[0].files);
+            reader.onload = function (e) 
+            {
+                $('.img')
+                    .attr('src', e.target.result);
+            };
+            reader.readAsDataURL($("#upload")[0].files[0]);
+	});
+
 	// Textboxes' events (move events)
 	var canMove = [];
 	$(".img-overlay").on('mousedown',function(e)
