@@ -34,31 +34,19 @@ const TXT1_Y = "txt1_y";
 const TXT2_X = "txt2_x";
 const TXT2_Y = "txt2_y";
 
+var currentURL = purl(window.location.href);
+var params = currentURL.param();
+
 $(document).ready(function()
 {
-	var currentURL = purl(window.location.href);
-	var params = currentURL.param();
+	// Checks the URL parameters
+	checkParameters();
 
-	if(isNaN(params[IMAGE_WIDTH])) params[IMAGE_WIDTH] 		= String(DEFAULT_IMAGE_WIDTH);
-	if(isNaN(params[IMAGE_HEIGHT]))  params[IMAGE_HEIGHT] 	= String(DEFAULT_IMAGE_HEIGHT);
-	if(isNaN(params[TXT1_X])) params[TXT1_X] 						= String(DEFAULT_TXT1_X);
-	if(isNaN(params[TXT1_Y])) params[TXT1_Y] 						= String(DEFAULT_TXT1_Y);	
-	if(isNaN(params[TXT2_X])) params[TXT2_X] 						= String(DEFAULT_TXT2_X);
-	if(isNaN(params[TXT2_Y])) params[TXT2_Y] 						= String(DEFAULT_TXT2_Y);	
+	// Fills the dropdown
+	fillDropdown();
 
-	/* Dropdown */
-	types.forEach(function(type)
-	{
-		$(".dropdown-menu").append("<li><a href='#'>"+type["label"]+"</a></li>");
-	});
-
-	/* Background image */
-	$(".img").attr('width',params[IMAGE_WIDTH]);
-	$(".img").attr('height',params[IMAGE_HEIGHT]);
-	$("#txt1").css('left',params[TXT1_X]+'px');
-	$("#txt1").css('top',params[TXT1_Y]+'px');	
-	$("#txt2").css('left',params[TXT2_X]+'px');
-	$("#txt2").css('top',params[TXT2_Y]+'px');	
+	// Card's background is drawn
+	prepareBackground();
 
 	// Draws the default image
 	setImage(DEFAULT_TYPE);
@@ -105,6 +93,18 @@ $(document).ready(function()
 	});
 });
 
+/* Checks the URL parameters (or lack of) */
+function checkParameters()
+{
+	if(isNaN(params[IMAGE_WIDTH])) params[IMAGE_WIDTH] 		= String(DEFAULT_IMAGE_WIDTH);
+	if(isNaN(params[IMAGE_HEIGHT]))  params[IMAGE_HEIGHT] 	= String(DEFAULT_IMAGE_HEIGHT);
+	if(isNaN(params[TXT1_X])) params[TXT1_X] 						= String(DEFAULT_TXT1_X);
+	if(isNaN(params[TXT1_Y])) params[TXT1_Y] 						= String(DEFAULT_TXT1_Y);	
+	if(isNaN(params[TXT2_X])) params[TXT2_X] 						= String(DEFAULT_TXT2_X);
+	if(isNaN(params[TXT2_Y])) params[TXT2_Y] 						= String(DEFAULT_TXT2_Y);	
+}
+
+/* Changes the card's image */
 function setImage(index)
 {
 	$(".img").hide();						
@@ -112,7 +112,22 @@ function setImage(index)
 	$(".img").fadeIn();
 }
 
-function prepare()
+/* Fills the dropdown with options */
+function fillDropdown()
 {
-	
+	types.forEach(function(type)
+	{
+		$(".dropdown-menu").append("<li><a href='#'>"+type["label"]+"</a></li>");
+	});
+}
+
+/* Draws the background at a initial position */
+function prepareBackground()
+{
+	$(".img").attr('width',params[IMAGE_WIDTH]);
+	$(".img").attr('height',params[IMAGE_HEIGHT]);
+	$("#txt1").css('left',params[TXT1_X]+'px');
+	$("#txt1").css('top',params[TXT1_Y]+'px');	
+	$("#txt2").css('left',params[TXT2_X]+'px');
+	$("#txt2").css('top',params[TXT2_Y]+'px');	
 }
