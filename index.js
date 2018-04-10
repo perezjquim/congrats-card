@@ -79,6 +79,26 @@ $(document).ready(function()
 	        }
 	    });
 	});
+
+	var move = [];
+
+	$(".img-overlay").on('mousedown',function(e)
+	{
+		move[e.target.id] = true;
+	});
+	$(".img-overlay").on('mouseup',function(e)
+	{
+		move[e.target.id] = false;
+	});	
+
+	$(".img-overlay").on('mousemove',function(e)
+	{
+		if(move[e.target.id])
+		{
+			$("#"+e.target.id).css('top',e.pageY-100+'px');
+			$("#"+e.target.id).css('left',e.pageX-200+'px');					
+		}
+	});
 });
 
 function setImage(index)
