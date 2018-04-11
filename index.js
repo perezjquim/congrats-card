@@ -84,13 +84,11 @@ $("document").ready(function(e)
 	// Generate card
 	$("#generate").click(function(e)
 	{
-	    html2canvas($("#img-container"), 
+	    html2canvas($("#card"), 
 	    {
-	    	  width: params[IMAGE_WIDTH],
-	    	  height: params[IMAGE_HEIGHT],
 	        onrendered: function(canvas) 
 	        {
-			var image  = canvas.toDataURL();
+			var image  = canvas.toDataURL("image/jpeg");
 			$("#dlcard").attr('href',image);
 			$("#dlcard")[0].click();
 	        }
