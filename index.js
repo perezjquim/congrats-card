@@ -36,7 +36,7 @@ var params = currentURL.param();
 var canMove = [];
 var border_left, border_right, border_top, border_bottom;
 
-$(window).on('load',function()
+$("document").ready(function(e)
 {
 	// Fills the dropdown
 	fillDropdown();
