@@ -86,9 +86,11 @@ $("document").ready(function(e)
 	{
 	    html2canvas($("#card"), 
 	    {
+	    	width: params[IMAGE_WIDTH],
+	    	height: params[IMAGE_HEIGHT],
 	        onrendered: function(canvas) 
 	        {
-			var image  = canvas.toDataURL("image/jpeg");
+			var image  = canvas.toDataURL();
 			$("#dlcard").attr('href',image);
 			$("#dlcard")[0].click();
 	        }
