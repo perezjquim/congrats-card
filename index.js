@@ -19,10 +19,10 @@ const types =
 const DEFAULT_TYPE = 0;
 const DEFAULT_IMAGE_WIDTH = 500;
 const DEFAULT_IMAGE_HEIGHT = 250;
-const DEFAULT_TXT1_X = 325;
-const DEFAULT_TXT1_Y = 120;
-const DEFAULT_TXT2_X = 325;
-const DEFAULT_TXT2_Y = 220;
+const DEFAULT_TXT1_X = 0;
+const DEFAULT_TXT1_Y = 0;
+const DEFAULT_TXT2_X = 0;
+const DEFAULT_TXT2_Y = 0;
 
 // Parameters
 const IMAGE_WIDTH = "image_width";
@@ -40,25 +40,27 @@ var params = currentURL.param();
 var canMove = [];
 var border_left, border_right, border_top, border_bottom;
 
-$(document).ready(function(e)
+$(window).on('load',function()
 {
-	// Checks the URL parameters
-	checkParameters();
-
 	// Fills the dropdown
 	fillDropdown();
 
-	// Card's background is drawn
-	prepareBackground();
+	// Checks the URL parameters
+	checkParameters();
+
+	// Card is positioned and sized
+	prepareCard();
 
 	// Updates the image borders (to define the textboxes' bounds)
-	updateBorders();	
+	updateBorders();			
 
-	// Draws the default image
-	setImage(DEFAULT_TYPE);
+	// Textboxes are positioned
+	prepareTextboxes();
 
 	// Clears the image uploader
 	$("#upload").val('');
+	$("#txt1").val('');
+	$("#txt2").val('');
 
 	// Dropdown action
 	$(".dropdown-menu > li > a").click(function(e)
@@ -85,32 +87,7 @@ $(document).ready(function(e)
 			var newpos_y = e.pageY;
 
 			var textbox = $("#"+e.target.id);
-			textbox.css('left',newpos_x + 'px');
-			textbox.css('top',newpos_y + 'px');		
-
-			if(newpos_x < border_left)
-			{
-				textbox.css('left',border_left + 'px');
-			}
-			else
-			{
-				if(newpos_x > border_right)
-				{
-					textbox.css('left', border_right + 'px');		
-				}
-			}
-
-			if(newpos_y < border_top)
-			{
-				textbox.css('top',border_top + 'px');
-			}
-			else
-			{
-				if(newpos_y > border_bottom)
-				{
-					textbox.css('top',border_bottom + 'px');						
-				}
-			}	
+			setLocation(textbox,newpos_x,newpos_y);
 		}
 	});
 
@@ -146,10 +123,12 @@ $(document).ready(function(e)
 	$(window).resize(function()
 	{
 	 	updateBorders();
+	 	var txt1 = $("#txt1");
+	 	setLocation(txt1,txt1.offset().left,txt1.offset().top);
+	 	var txt2 = $("#txt2");
+	 	setLocation(txt2,txt2.offset().left,txt2.offset().top);	 		 	
 	});	
 });
-
-
 
 /* Checks the URL parameters (or lack of) */
 function checkParameters()
@@ -165,9 +144,9 @@ function checkParameters()
 /* Changes the card's image */
 function setImage(index)
 {
-	$(".img").hide();						
-	$(".img").attr('src',types[index]["image"]);
-	$(".img").fadeIn();
+	$("#img").hide();						
+	$("#img").attr('src',types[index]["image"]);
+	$("#img").fadeIn();
 }
 
 /* Fills the dropdown with options */
@@ -179,23 +158,55 @@ function fillDropdown()
 	});
 }
 
-/* Draws the background at a initial position */
-function prepareBackground()
+/* Sets up the textboxes position */
+function prepareTextboxes()
 {
-	$(".img").attr('width',params[IMAGE_WIDTH]);
-	$(".img").attr('height',params[IMAGE_HEIGHT]);
-	$("#txt1").css('left',params[TXT1_X]+'px');
-	$("#txt1").css('top',params[TXT1_Y]+'px');	
-	$("#txt2").css('left',params[TXT2_X]+'px');
-	$("#txt2").css('top',params[TXT2_Y]+'px');	
+	setLocation($("#txt1"),params[TXT1_X],params[TXT1_Y]);	
+	setLocation($("#txt2"),params[TXT2_X],params[TXT2_Y]);
+}
+
+/* Sets up the card's size and initial image */
+function prepareCard()
+{
+	$("#img").attr('width',params[IMAGE_WIDTH]);
+	$("#img").attr('height',params[IMAGE_HEIGHT]);
+
+	// Draws the default image
+	setImage(DEFAULT_TYPE);	
 }
 
 /* Updates the image borders (for the textboxes' bounds) */
 function updateBorders()
 {
-	border_left = $(".img")[0].offsetLeft;
-	border_top = $(".img")[0].offsetTop;
-	border_right = (border_left + $(".img").outerWidth()) - $(".img-overlay").outerWidth();
-	border_bottom = (border_top + $(".img").outerHeight()) - $(".img-overlay").outerHeight();
-	console.log(border_top);
+	border_left = $("#img").offset().left;
+	border_top = $("#img").offset().top;
+	border_right = (border_left + $("#img").outerWidth());
+	border_bottom = (border_top + $("#img").outerHeight());
+}
+
+function setLocation(element,x,y)
+{
+	var _x = x;
+	var _y = y;
+
+	if(_x < border_left)
+	{
+		_x = border_left;
+	}
+	else if(_x > border_right)
+	{
+		_x = border_right;
+	}
+
+	if(_y < border_top)
+	{
+		_y = border_top;
+	}
+	else if(_y > border_bottom)
+	{
+		_y = border_bottom;						
+	}
+
+	element.css('left',_x + 'px');
+	element.css('top',_y + 'px');		
 }
