@@ -33,7 +33,6 @@ var currentURL = purl(window.location.href);
 var params = currentURL.param();
 
 // Textboxes' events (move events)
-var canMove = [];
 var border_left, border_right, border_top, border_bottom;
 
 $("document").ready(function(e)
