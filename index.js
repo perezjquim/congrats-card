@@ -65,12 +65,13 @@ $("document").ready(function(e)
 	{
 		canMove[e.target.id] = true;
 	});
-	$(".img-overlay").on('mouseup',function(e)
+	$(".img-overlay").on('mouseup mouseleave',function(e)
 	{
 		canMove[e.target.id] = false;
 	});
 	$(".img-overlay").on('mousemove',function(e)
 	{
+		e.preventDefault();
 		if(canMove[e.target.id])
 		{
 			var newpos_x = e.pageX;
