@@ -84,12 +84,15 @@ $("document").ready(function(e)
 	// Generate card
 	$("#generate").click(function(e)
 	{
-		html2canvas($("#card"),{width: params[IMAGE_WIDTH],height: params[IMAGE_HEIGHT]}).then(canvas => 
+		html2canvas($("#card"),
 		{
-			$("#output").val('');
-			$("#output").replaceWith(canvas);
-			//saveAs(canvas, 'image.jpeg');
-Canvas2Image.saveAsPNG(canvas);							
+			width: params[IMAGE_WIDTH],height: params[IMAGE_HEIGHT]
+		}).then(canvas => 
+		{
+			canvas.toBlob(function (blob) 
+			{
+                   		saveAs(blob,"card.png");
+               	});						
 		});
 	});
 
