@@ -176,8 +176,8 @@ function updateBorders()
 {
 	border_left = $("#img").offset().left;
 	border_top = $("#img").offset().top;
-	border_right = (border_left + $("#img").outerWidth());
-	border_bottom = (border_top + $("#img").outerHeight());
+	border_right = (border_left + $("#img").outerWidth()) - $(".img-overlay").outerWidth();
+	border_bottom = (border_top + $("#img").outerHeight()) - $(".img-overlay").outerHeight();
 }
 
 /* Sets the location for a textboxes, being given X and Y */
