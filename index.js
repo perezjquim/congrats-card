@@ -84,14 +84,13 @@ $("document").ready(function(e)
 	// Generate card
 	$("#generate").click(function(e)
 	{
-		console.log("fogo");
-	    html2canvas(document.querySelector("#card"),{width: params[IMAGE_WIDTH],
-	    	height: params[IMAGE_HEIGHT]}).then(canvas => {
-	    		console.log(canvas.toDataURL());
-			    canvas.toBlob(function(blob) {
-				    saveAs(blob, "card.png");
-				});
-			});
+		html2canvas($("#card"),{width: params[IMAGE_WIDTH],height: params[IMAGE_HEIGHT]}).then(canvas => 
+		{
+			$("#output").val('');
+			$("#output").replaceWith(canvas);
+			//saveAs(canvas, 'image.jpeg');
+Canvas2Image.saveAsPNG(canvas);							
+		});
 	});
 
 	// Background image customization
