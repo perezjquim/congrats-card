@@ -84,17 +84,14 @@ $("document").ready(function(e)
 	// Generate card
 	$("#generate").click(function(e)
 	{
-	    html2canvas($("#card"), 
-	    {
-	    	width: params[IMAGE_WIDTH],
-	    	height: params[IMAGE_HEIGHT],
-	        onrendered: function(canvas) 
-	        {
-			var image  = canvas.toDataURL();
-			$("#dlcard").attr('href',image);
-			$("#dlcard")[0].click();
-	        }
-	    });
+
+
+
+		html2canvas(document.querySelector("#card")).then(canvas => {
+		    document.body.appendChild(canvas)
+		});
+
+
 	});
 
 	// Background image customization
