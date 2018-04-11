@@ -61,7 +61,7 @@ $("document").ready(function(e)
 	});
 
 	// Disables click/drag action on the card's background
-	$("#img").on('mousemove mousedown',function(e)
+	$("#img").on('dragstart',function(e)
 	{
 		e.preventDefault();
 	});
@@ -69,23 +69,17 @@ $("document").ready(function(e)
 	// Textboxes events
 	$(".img-overlay").on('mousedown',function(e)
 	{
-		canMove[e.target.id] = true;
-	});
-	$(".img-overlay").on('mouseup mouseleave',function(e)
-	{
-		canMove[e.target.id] = false;
-	});
-	$(".img-overlay").on('mousemove',function(e)
-	{
-		if(canMove[e.target.id])
+		var textbox = $("#"+e.target.id);		
+		$("body").bind('mousemove',function(e)
 		{
 			var newpos_x = e.pageX;
 			var newpos_y = e.pageY;
-			console.log(newpos_x);
-			console.log(newpos_y);
-			var textbox = $("#"+e.target.id);
 			setLocation(textbox,newpos_x,newpos_y);
-		}
+		});
+		$("body").one('mouseup', function() 
+		{
+			$("body").unbind("mousemove");
+	      });
 	});
 
 	// Generate card
@@ -136,7 +130,7 @@ function checkImageParameters()
 /* Checks the textboxes' parameters given in the URL (or lack of) */
 function checkTxtParameters()
 {
-	if(isNaN(params[TXT1_X])) params[TXT1_X] 						= String(border_right);
+	if(isNaN(params[TXT1_X])) params[TXT1_X] 						= String(border_left);
 	if(isNaN(params[TXT1_Y])) params[TXT1_Y] 						= String(border_top);	
 	if(isNaN(params[TXT2_X])) params[TXT2_X] 						= String(border_right);
 	if(isNaN(params[TXT2_Y])) params[TXT2_Y] 						= String(border_bottom);	
