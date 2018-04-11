@@ -60,6 +60,12 @@ $("document").ready(function(e)
 		setImage(index);
 	});
 
+	// Disables click/drag action on the card's background
+	$("#img").on('mousemove mousedown',function(e)
+	{
+		e.preventDefault();
+	});
+
 	// Textboxes events
 	$(".img-overlay").on('mousedown',function(e)
 	{
@@ -71,12 +77,12 @@ $("document").ready(function(e)
 	});
 	$(".img-overlay").on('mousemove',function(e)
 	{
-		e.preventDefault();
 		if(canMove[e.target.id])
 		{
 			var newpos_x = e.pageX;
 			var newpos_y = e.pageY;
-
+			console.log(newpos_x);
+			console.log(newpos_y);
 			var textbox = $("#"+e.target.id);
 			setLocation(textbox,newpos_x,newpos_y);
 		}
