@@ -57,10 +57,8 @@ $(window).on('load',function()
 	// Textboxes are positioned
 	prepareTextboxes();
 
-	// Clears the image uploader
-	$("#upload").val('');
-	$("#txt1").val('');
-	$("#txt2").val('');
+	// Clears previous data
+	clearData();
 
 	// Dropdown action
 	$(".dropdown-menu > li > a").click(function(e)
@@ -68,7 +66,6 @@ $(window).on('load',function()
 		var index = $(this).parent().index();
 		setImage(index);
 	});
-
 
 	// Textboxes events
 	$(".img-overlay").on('mousedown',function(e)
@@ -111,7 +108,6 @@ $(window).on('load',function()
 	$("#upload").change(function()
 	{
 		var reader = new FileReader();
-		console.log($("#upload")[0].files);
             reader.onload = function (e) 
             {
                 $('.img').attr('src', e.target.result);
@@ -184,6 +180,7 @@ function updateBorders()
 	border_bottom = (border_top + $("#img").outerHeight());
 }
 
+/* Sets the location for a textboxes, being given X and Y */
 function setLocation(element,x,y)
 {
 	var _x = x;
@@ -209,4 +206,12 @@ function setLocation(element,x,y)
 
 	element.css('left',_x + 'px');
 	element.css('top',_y + 'px');		
+}
+
+/* Clears data from the image uploader and the textboxes */
+function clearData()
+{
+	$("#upload").val('');
+	$("#txt1").val('');
+	$("#txt2").val('');
 }
