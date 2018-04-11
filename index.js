@@ -87,6 +87,7 @@ $("document").ready(function(e)
 		console.log("fogo");
 	    html2canvas(document.querySelector("#card"),{width: params[IMAGE_WIDTH],
 	    	height: params[IMAGE_HEIGHT]}).then(canvas => {
+	    		console.log(canvas.toDataURL());
 			    canvas.toBlob(function(blob) {
 				    saveAs(blob, "card.png");
 				});
