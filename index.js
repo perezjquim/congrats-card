@@ -85,9 +85,12 @@ $("document").ready(function(e)
 	$("#generate").click(function(e)
 	{
 		console.log("fogo");
-	    html2canvas(document.querySelector("#card")).then(canvas => {
-		    document.body.appendChild(canvas)
-		});
+	    html2canvas(document.querySelector("#card"),{width: params[IMAGE_WIDTH],
+	    	height: params[IMAGE_HEIGHT]}).then(canvas => {
+			    canvas.toBlob(function(blob) {
+				    saveAs(blob, "card.png");
+				});
+			});
 	});
 
 	// Background image customization
