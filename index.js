@@ -19,10 +19,6 @@ const types =
 const DEFAULT_TYPE = 0;
 const DEFAULT_IMAGE_WIDTH = 500;
 const DEFAULT_IMAGE_HEIGHT = 250;
-const DEFAULT_TXT1_X = 0;
-const DEFAULT_TXT1_Y = 0;
-const DEFAULT_TXT2_X = 0;
-const DEFAULT_TXT2_Y = 0;
 
 // Parameters
 const IMAGE_WIDTH = "image_width";
@@ -44,9 +40,6 @@ $(window).on('load',function()
 {
 	// Fills the dropdown
 	fillDropdown();
-
-	// Checks the URL parameters
-	checkParameters();
 
 	// Card is positioned and sized
 	prepareCard();
@@ -110,7 +103,7 @@ $(window).on('load',function()
 		var reader = new FileReader();
             reader.onload = function (e) 
             {
-                $('.img').attr('src', e.target.result);
+                $('#img').attr('src', e.target.result);
             };
             reader.readAsDataURL($("#upload")[0].files[0]);
 	});	
@@ -126,15 +119,20 @@ $(window).on('load',function()
 	});	
 });
 
-/* Checks the URL parameters (or lack of) */
-function checkParameters()
+/* Checks the image parameters given in the URL (or lack of) */
+function checkImageParameters()
 {
 	if(isNaN(params[IMAGE_WIDTH])) params[IMAGE_WIDTH] 		= String(DEFAULT_IMAGE_WIDTH);
 	if(isNaN(params[IMAGE_HEIGHT]))  params[IMAGE_HEIGHT] 	= String(DEFAULT_IMAGE_HEIGHT);
-	if(isNaN(params[TXT1_X])) params[TXT1_X] 						= String(DEFAULT_TXT1_X);
-	if(isNaN(params[TXT1_Y])) params[TXT1_Y] 						= String(DEFAULT_TXT1_Y);	
-	if(isNaN(params[TXT2_X])) params[TXT2_X] 						= String(DEFAULT_TXT2_X);
-	if(isNaN(params[TXT2_Y])) params[TXT2_Y] 						= String(DEFAULT_TXT2_Y);	
+}
+
+/* Checks the textboxes' parameters given in the URL (or lack of) */
+function checkTxtParameters()
+{
+	if(isNaN(params[TXT1_X])) params[TXT1_X] 						= String(border_right);
+	if(isNaN(params[TXT1_Y])) params[TXT1_Y] 						= String(border_top);	
+	if(isNaN(params[TXT2_X])) params[TXT2_X] 						= String(border_right);
+	if(isNaN(params[TXT2_Y])) params[TXT2_Y] 						= String(border_bottom);	
 }
 
 /* Changes the card's image */
@@ -157,6 +155,7 @@ function fillDropdown()
 /* Sets up the textboxes position */
 function prepareTextboxes()
 {
+	checkTxtParameters();	
 	setLocation($("#txt1"),params[TXT1_X],params[TXT1_Y]);	
 	setLocation($("#txt2"),params[TXT2_X],params[TXT2_Y]);
 }
@@ -164,6 +163,9 @@ function prepareTextboxes()
 /* Sets up the card's size and initial image */
 function prepareCard()
 {
+	// Checks the image parameters
+	checkImageParameters();
+
 	$("#img").attr('width',params[IMAGE_WIDTH]);
 	$("#img").attr('height',params[IMAGE_HEIGHT]);
 
