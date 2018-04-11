@@ -15,10 +15,6 @@ const types =
 	}
 ];
 
-// Mouse fix
-const MOUSE_FIX_X = 150;
-const MOUSE_FIX_Y = 25;
-
 // Default values
 const DEFAULT_TYPE = 0;
 const DEFAULT_IMAGE_WIDTH = 500;
@@ -40,6 +36,10 @@ const TXT2_Y = "txt2_y";
 var currentURL = purl(window.location.href);
 var params = currentURL.param();
 
+// Textboxes' events (move events)
+var canMove = [];
+var border_left, border_right, border_top, border_bottom;
+
 $(document).ready(function(e)
 {
 	// Checks the URL parameters
@@ -50,6 +50,9 @@ $(document).ready(function(e)
 
 	// Card's background is drawn
 	prepareBackground();
+
+	// Updates the image borders (to define the textboxes' bounds)
+	updateBorders();	
 
 	// Draws the default image
 	setImage(DEFAULT_TYPE);
@@ -64,13 +67,8 @@ $(document).ready(function(e)
 		setImage(index);
 	});
 
-	// Textboxes' events (move events)
-	var canMove = [];
-	var border_left = $(".img")[0].offsetLeft;
-	var border_top = $(".img")[0].offsetTop;
-	var border_right = (border_left + $(".img").outerWidth()) - $(".img-overlay").outerWidth();
-	var	border_bottom = (border_top + $(".img").outerHeight()) - $(".img-overlay").outerHeight();
 
+	// Textboxes events
 	$(".img-overlay").on('mousedown',function(e)
 	{
 		canMove[e.target.id] = true;
@@ -144,12 +142,10 @@ $(document).ready(function(e)
             reader.readAsDataURL($("#upload")[0].files[0]);
 	});	
 
+	// Window resize (zoom in/zoom out) event
 	$(window).resize(function()
 	{
-	 	border_left = $(".img")[0].offsetLeft;
-		border_top = $(".img")[0].offsetTop;
-		border_right = (border_left + $(".img").outerWidth()) - $(".img-overlay").outerWidth();
-		border_bottom = (border_top + $(".img").outerHeight()) - $(".img-overlay").outerHeight();
+	 	updateBorders();
 	});	
 });
 
@@ -192,4 +188,14 @@ function prepareBackground()
 	$("#txt1").css('top',params[TXT1_Y]+'px');	
 	$("#txt2").css('left',params[TXT2_X]+'px');
 	$("#txt2").css('top',params[TXT2_Y]+'px');	
+}
+
+/* Updates the image borders (for the textboxes' bounds) */
+function updateBorders()
+{
+	border_left = $(".img")[0].offsetLeft;
+	border_top = $(".img")[0].offsetTop;
+	border_right = (border_left + $(".img").outerWidth()) - $(".img-overlay").outerWidth();
+	border_bottom = (border_top + $(".img").outerHeight()) - $(".img-overlay").outerHeight();
+	console.log(border_top);
 }
