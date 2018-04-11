@@ -129,7 +129,7 @@ function checkImageParameters()
 /* Checks the textboxes' parameters given in the URL (or lack of) */
 function checkTxtParameters()
 {
-	if(isNaN(params[TXT1_X])) params[TXT1_X] 						= String(border_left);
+	if(isNaN(params[TXT1_X])) params[TXT1_X] 						= String(border_right);
 	if(isNaN(params[TXT1_Y])) params[TXT1_Y] 						= String(border_top);	
 	if(isNaN(params[TXT2_X])) params[TXT2_X] 						= String(border_right);
 	if(isNaN(params[TXT2_Y])) params[TXT2_Y] 						= String(border_bottom);	
