@@ -1,0 +1,32 @@
+HOW-TO:
+
+- Parametrização das dimensões da imagem (W e L)
+	> Exemplo de URL: 
+	"perezjquim.github.io/congrats-card/index.html?image_width=222&image_height=333"
+	(sendo que o 'image_width' indica a largura da image e que o 'image_height' indica a altura da imagem)
+
+- Configuração da imagem de fundo
+	> A imagem de fundo pode ser mudada clicando no dropdown(com a label 'Tipo de postal') e escolhendo outro tema
+	> Alternativamente, pode ser utilizada uma imagem personalizada (introduzida pelo utilizador) através do botão 'Carregar imagem personalizada'
+
+- Textos dinâmicos (overlays)
+	> A sua posição pode ser configurada através de URLs como estes:
+	"perezjquim.github.io/congrats-card/index.html?txt1_x=222&txt1_y=333"
+	(no caso do texto 1)
+	ou
+	"perezjquim.github.io/congrats-card/index.html?txt2_x=222&txt2_y=333"
+	(no caso do texto 2)
+
+	> Para além disso, o seu conteúdo pode ser configurado também através do URL. Vejamos:
+	"perezjquim.github.io/congrats-card/index.html?txt1_txt=olá mundo"
+	(no caso do texto 1)
+	ou	
+	"perezjquim.github.io/congrats-card/index.html?txt2_txt=olá mundo"
+	(no caso do texto 2)	
+
+	> Da mesma forma, podem ser movimentados com o rato, tendo como 'limites'/borders a imagem de fundo (ou seja, as textboxes são impedidas de sair de dentro da imagem)
+
+	> Igualmente, as textboxes podem também ser redimensionadas com o rato, através do canto inferior direito da respetiva textbox.
+
+- Geração da imagem final (png)
+	> O postal poderá ser gerada através do botão 'Gerar postal', que encaminhará para o download da imagem final

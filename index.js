@@ -70,17 +70,24 @@ $("document").ready(function(e)
 	// Textboxes events
 	$(".img-overlay").on('mousedown',function(e)
 	{
-		var textbox = $("#"+e.target.id);		
-		$("body").bind('mousemove',function(e)
+		if(Math.abs(e.pageX - ($(this).offset().left + $(this).outerWidth())) > 10
+			&& 
+		   Math.abs(e.pageY - ($(this).offset().top + $(this).outerHeight())) > 10)
 		{
-			var newpos_x = e.pageX;
-			var newpos_y = e.pageY;
-			setLocation(textbox,newpos_x,newpos_y);
-		});
-		$("body").one('mouseup', function() 
-		{
-			$("body").unbind("mousemove");
-	      });
+			var textbox = $("#"+e.target.id);		
+			$("body").bind('mousemove',function(e)
+			{
+				var newpos_x = e.pageX;
+				var newpos_y = e.pageY;
+				setLocation(textbox,newpos_x,newpos_y);
+				updateBorders();				
+			});
+			$("body").one('mouseup', function() 
+			{
+				updateBorders();
+				$("body").unbind("mousemove");
+		      });
+		}
 	});
 
 	// Generate card
@@ -161,8 +168,8 @@ function prepareTextboxes()
 	checkTxtParameters();	
 	setLocation($("#txt1"),params[TXT1_X],params[TXT1_Y]);	
 	setLocation($("#txt2"),params[TXT2_X],params[TXT2_Y]);
-	$("#txt1").val(params[TXT1_TEXT]);
-	$("#txt2").val(params[TXT2_TEXT]);
+	setText($("#txt1"),params[TXT1_TEXT]);
+	setText($("#txt2"),params[TXT2_TEXT]);
 }
 
 /* Sets up the card's size and initial image */
@@ -188,7 +195,7 @@ function updateBorders()
 }
 
 /* Sets the location for a textboxes, being given X and Y */
-function setLocation(element,x,y)
+function setLocation(textbox,x,y)
 {
 	var _x = x;
 	var _y = y;
@@ -211,8 +218,14 @@ function setLocation(element,x,y)
 		_y = border_bottom;						
 	}
 
-	element.css('left',_x + 'px');
-	element.css('top',_y + 'px');		
+	textbox.css('left',_x + 'px');
+	textbox.css('top',_y + 'px');		
+}
+
+/* Sets the text of a given textbox */
+function setText(textbox,text)
+{
+	textbox.val(text);
 }
 
 /* Clears data from the image uploader and the textboxes */
