@@ -24,7 +24,7 @@ HOW-TO:
 	"perezjquim.github.io/congrats-card/index.html?txt2_txt=olá mundo"
 	(no caso do texto 2)	
 
-	> Da mesma forma, podem ser movimentados com o rato, tendo como 'limites'/borders a imagem de fundo (ou seja, as textboxes são impedidas de sair de dentro da imagem)
+	> Da mesma forma, podem ser movimentados com o rato (arrastar começando no lado esquerdo do texto), tendo como 'limites'/borders a imagem de fundo (ou seja, as textboxes são impedidas de sair de dentro da imagem)
 
 	> Igualmente, as textboxes podem também ser redimensionadas com o rato, através do canto inferior direito da respetiva textbox.
 
