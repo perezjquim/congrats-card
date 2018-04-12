@@ -1,8 +1,12 @@
 .img-overlay
 {
-    position: absolute;
-    width: 20%;
-    resize: none;
+	position: absolute;
+	width: 20%;
+	resize: none;
+	background:transparent;    
+	border:none;
+	color:#fff;	
+	text-shadow: #000 0px 0px 1px;	
 }
 .hidden
 {

@@ -27,6 +27,8 @@ const TXT1_X = "txt1_x";
 const TXT1_Y = "txt1_y";
 const TXT2_X = "txt2_x";
 const TXT2_Y = "txt2_y";
+const TXT1_TEXT = "txt1_txt";
+const TXT2_TEXT="txt2_txt";
 
 // URL
 var currentURL = purl(window.location.href);
@@ -46,11 +48,11 @@ $("document").ready(function(e)
 	// Updates the image borders (to define the textboxes' bounds)
 	updateBorders();			
 
+	// Clears previous data
+	clearData();	
+
 	// Textboxes are positioned
 	prepareTextboxes();
-
-	// Clears previous data
-	clearData();
 
 	// Dropdown action
 	$(".dropdown-menu > li > a").click(function(e)
@@ -128,10 +130,12 @@ function checkImageParameters()
 /* Checks the textboxes' parameters given in the URL (or lack of) */
 function checkTxtParameters()
 {
-	if(isNaN(params[TXT1_X])) params[TXT1_X] 						= String(border_right);
-	if(isNaN(params[TXT1_Y])) params[TXT1_Y] 						= String(border_top);	
-	if(isNaN(params[TXT2_X])) params[TXT2_X] 						= String(border_right);
-	if(isNaN(params[TXT2_Y])) params[TXT2_Y] 						= String(border_bottom);	
+	if(isNaN(params[TXT1_X])) params[TXT1_X] 							= String(border_right);
+	if(isNaN(params[TXT1_Y])) params[TXT1_Y] 							= String(border_top);	
+	if(isNaN(params[TXT2_X])) params[TXT2_X] 							= String(border_right);
+	if(isNaN(params[TXT2_Y])) params[TXT2_Y] 							= String(border_bottom);
+	if(typeof params[TXT1_TEXT] === 'undefined') params[TXT1_TEXT] 	= "";	
+	if(typeof params[TXT2_TEXT] === 'undefined') params[TXT2_TEXT] 	= "";		
 }
 
 /* Changes the card's image */
@@ -157,6 +161,9 @@ function prepareTextboxes()
 	checkTxtParameters();	
 	setLocation($("#txt1"),params[TXT1_X],params[TXT1_Y]);	
 	setLocation($("#txt2"),params[TXT2_X],params[TXT2_Y]);
+	$("#txt1").val(params[TXT1_TEXT]);
+	$("#txt2").val(params[TXT2_TEXT]);
+	console.log(params[TXT2_TEXT]);
 }
 
 /* Sets up the card's size and initial image */
