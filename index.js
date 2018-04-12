@@ -163,7 +163,6 @@ function prepareTextboxes()
 	setLocation($("#txt2"),params[TXT2_X],params[TXT2_Y]);
 	$("#txt1").val(params[TXT1_TEXT]);
 	$("#txt2").val(params[TXT2_TEXT]);
-	console.log(params[TXT2_TEXT]);
 }
 
 /* Sets up the card's size and initial image */
