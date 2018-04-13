@@ -180,6 +180,7 @@ function checkTxtParameters()
 	}			
 }
 
+/* Alerts the lack of a value for a certain parameter */
 function paramAlert(param,value)
 {
 	alert("No value given for parameter '"+param+"'. Assuming its value as '"+value+"'.");
