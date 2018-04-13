@@ -97,16 +97,23 @@ $("document").ready(function(e)
 	// Generate card
 	$("#generate").click(function(e)
 	{
-		html2canvas($("#card"),
+		try 
 		{
-			width: params[IMAGE_WIDTH],height: params[IMAGE_HEIGHT]
-		}).then(canvas => 
-		{
-			canvas.toBlob(function (blob) 
+			html2canvas($("#card"),
 			{
-                   		saveAs(blob,"card.png");
-               	});						
-		});
+				width: params[IMAGE_WIDTH],height: params[IMAGE_HEIGHT]
+			}).then(canvas => 
+			{
+				canvas.toBlob(function (blob) 
+				{
+	                   		saveAs(blob,"card.png");
+	               	});						
+			});
+		}
+		catch(err) 
+		{
+		    alert(err.message);
+		}
 	});
 
 	// Background image customization
@@ -141,12 +148,41 @@ function checkImageParameters()
 /* Checks the textboxes' parameters given in the URL (or lack of) */
 function checkTxtParameters()
 {
-	if(isNaN(params[TXT1_X])) params[TXT1_X] 							= String(border_right);
-	if(isNaN(params[TXT1_Y])) params[TXT1_Y] 							= String(border_top);	
-	if(isNaN(params[TXT2_X])) params[TXT2_X] 							= String(border_right);
-	if(isNaN(params[TXT2_Y])) params[TXT2_Y] 							= String(border_bottom);
-	if(typeof params[TXT1_TEXT] === 'undefined') params[TXT1_TEXT] 	= DEFAULT_TEXT1;		
-	if(typeof params[TXT2_TEXT] === 'undefined') params[TXT2_TEXT] 	= DEFAULT_TEXT2;
+	if(isNaN(params[TXT1_X])) 
+	{
+		params[TXT1_X] = String(border_right);
+		paramAlert(TXT1_X,border_right);
+	}
+	if(isNaN(params[TXT1_Y])) 
+	{
+		params[TXT1_Y] = String(border_top);
+		paramAlert(TXT1_Y,border_top);
+	}	
+	if(isNaN(params[TXT2_X])) 
+	{
+		params[TXT2_X] = String(border_right);
+		paramAlert(TXT2_X,border_right);
+	}	
+	if(isNaN(params[TXT2_Y])) 
+	{
+		params[TXT2_Y] = String(border_bottom);
+		paramAlert(TXT2_Y,border_bottom);
+	}	
+	if(typeof params[TXT1_TEXT] === 'undefined') 
+	{
+		params[TXT1_TEXT] 	= DEFAULT_TEXT1;
+		paramAlert(TXT1_TEXT,DEFAULT_TEXT1);
+	}	
+	if(typeof params[TXT2_TEXT] === 'undefined') 
+	{
+		params[TXT2_TEXT] 	= DEFAULT_TEXT2;
+		paramAlert(TXT2_TEXT,DEFAULT_TEXT2);
+	}			
+}
+
+function paramAlert(param,value)
+{
+	alert("No value given for parameter '"+param+"'. Assuming its value as '"+value+"'.");
 }
 
 /* Changes the card's image */
