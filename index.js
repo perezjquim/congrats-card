@@ -18,7 +18,9 @@ const types =
 // Default values
 const DEFAULT_TYPE = 0;
 const DEFAULT_IMAGE_WIDTH = 500;
-const DEFAULT_IMAGE_HEIGHT = 250;
+const DEFAULT_IMAGE_HEIGHT = 250; 
+const DEFAULT_TEXT1 = "(texto1)";
+const DEFAULT_TEXT2 = "(texto2)";
 
 // Parameters
 const IMAGE_WIDTH = "image_width";
@@ -70,11 +72,14 @@ $("document").ready(function(e)
 	// Textboxes events
 	$(".img-overlay").on('mousedown',function(e)
 	{
-		if(Math.abs(e.pageX - ($(this).offset().left + $(this).outerWidth())) > 10
+		var textbox = $(this);			
+		var isResizing = 
+			Math.abs(e.pageX - (textbox.offset().left + textbox.outerWidth())) < 10
 			&& 
-		   Math.abs(e.pageY - ($(this).offset().top + $(this).outerHeight())) > 10)
+		   	Math.abs(e.pageY - (textbox.offset().top + textbox.outerHeight())) < 10;
+
+		if(!isResizing)
 		{
-			var textbox = $("#"+e.target.id);		
 			$("body").bind('mousemove',function(e)
 			{
 				var newpos_x = e.pageX;
@@ -84,7 +89,6 @@ $("document").ready(function(e)
 			});
 			$("body").one('mouseup', function() 
 			{
-				updateBorders();
 				$("body").unbind("mousemove");
 		      });
 		}
@@ -109,11 +113,11 @@ $("document").ready(function(e)
 	$("#upload").change(function()
 	{
 		var reader = new FileReader();
-            reader.onload = function (e) 
-            {
-                $('#img').attr('src', e.target.result);
-            };
-            reader.readAsDataURL($("#upload")[0].files[0]);
+		reader.onload = function (e) 
+		{
+		    $('#img').attr('src', e.target.result);
+		};
+		reader.readAsDataURL($("#upload")[0].files[0]);
 	});	
 
 	// Window resize (zoom in/zoom out) event
@@ -141,8 +145,8 @@ function checkTxtParameters()
 	if(isNaN(params[TXT1_Y])) params[TXT1_Y] 							= String(border_top);	
 	if(isNaN(params[TXT2_X])) params[TXT2_X] 							= String(border_right);
 	if(isNaN(params[TXT2_Y])) params[TXT2_Y] 							= String(border_bottom);
-	if(typeof params[TXT1_TEXT] === 'undefined') params[TXT1_TEXT] 	= "";	
-	if(typeof params[TXT2_TEXT] === 'undefined') params[TXT2_TEXT] 	= "";		
+	if(typeof params[TXT1_TEXT] === 'undefined') params[TXT1_TEXT] 	= DEFAULT_TEXT1;		
+	if(typeof params[TXT2_TEXT] === 'undefined') params[TXT2_TEXT] 	= DEFAULT_TEXT2;
 }
 
 /* Changes the card's image */
