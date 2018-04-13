@@ -104,10 +104,17 @@ $("document").ready(function(e)
 				width: params[IMAGE_WIDTH],height: params[IMAGE_HEIGHT]
 			}).then(canvas => 
 			{
-				canvas.toBlob(function (blob) 
+				try
 				{
-	                   		saveAs(blob,"card.png");
-	               	});						
+					canvas.toBlob(function (blob) 
+					{
+		                   		saveAs(blob,"card.png");
+		               	});		
+				}
+				catch(err)
+				{
+					alert(err.message);
+				}
 			});
 		}
 		catch(err) 
