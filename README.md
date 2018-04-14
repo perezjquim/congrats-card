@@ -11,8 +11,8 @@
 	- Textboxes' text
 
 ### Screenshots
-<img src="https://imgur.com/DExEj8Y.png">
-<img src="https://imgur.com/JWF1zMz.png">
+<img src="https://imgur.com/0UWImTh.png">
+<img src="https://imgur.com/SF3ItHq.png">
 
 ### URL parameters
 - **Image width/height** - e.g.:

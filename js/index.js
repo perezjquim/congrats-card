@@ -84,12 +84,23 @@ $("document").ready(function(e)
 			{
 				var newpos_x = e.pageX;
 				var newpos_y = e.pageY;
-				setLocation(textbox,newpos_x,newpos_y);
-				updateBorders();				
+				setLocation(textbox,newpos_x,newpos_y);	
 			});
 			$("body").one('mouseup', function() 
 			{
 				$("body").unbind("mousemove");
+		      });
+		}
+		else
+		{
+			$("body").bind('mousemove',function(e)
+			{
+				updateBorders();				
+			});
+			$("body").one('mouseup', function() 
+			{
+				$("body").unbind("mousemove");				
+				updateBorders();
 		      });
 		}
 	});
@@ -197,7 +208,7 @@ function paramAlert(param,value)
 function setImage(index)
 {
 	$("#img").hide();						
-	$("#img").attr('src',types[index]["image"]);
+	$("#img").attr('src',"images"+"/"+types[index]["image"]);
 	$("#img").fadeIn();
 }
 
