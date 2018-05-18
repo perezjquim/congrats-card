@@ -101,7 +101,7 @@ $("document").ready(function(e)
 			{
 				$("body").unbind("mousemove");				
 				updateBorders();
-		      });
+      });
 		}
 	});
 
@@ -112,15 +112,16 @@ $("document").ready(function(e)
 		{
 			html2canvas($("#card"),
 			{
-				width: params[IMAGE_WIDTH],height: params[IMAGE_HEIGHT]
+				width:$("#card").outerWidth(),
+				height:$("#card").outerHeight()
 			}).then(canvas => 
 			{
 				try
 				{
 					canvas.toBlob(function (blob) 
 					{
-		                   		saveAs(blob,"card.png");
-		               	});		
+		        saveAs(blob,"card.png");
+		      });		
 				}
 				catch(err)
 				{
